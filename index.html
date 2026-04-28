@@ -1,208 +1,496 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Proposta Comercial — Rita Cunha</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Proposta Comercial — Rita Cunha · Consultoria de Imagem</title>
+  <title>Proposta Empresarial — Rita Cunha · Consultoria de Imagem</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="proposta.css" />
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+    :root{
+      --vinho:#8c1f1f;
+      --vinho-dk:#6a1616;
+      --vinho-lt:#b84040;
+      --creme:#faf6f2;
+      --bege:#f0e8e0;
+      --cinza:#5c5c5c;
+      --escuro:#1f1f1f;
+      --branco:#ffffff;
+      --sombra:rgba(0,0,0,0.12);
+      --font-serif:'Cormorant Garamond',Georgia,serif;
+      --font-sans:'Montserrat',Arial,sans-serif;
+      --radius:20px;
+      --trans:.3s ease;
+    }
+
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-sans);color:var(--escuro);background:var(--creme);line-height:1.65}
+    .container{width:90%;max-width:1100px;margin:auto}
+
+    /* ===== TOPBAR ===== */
+    .topbar{
+      background:var(--vinho);padding:16px 0;color:var(--branco);
+      position:sticky;top:0;z-index:1000;
+      transition:padding var(--trans),box-shadow var(--trans);
+      box-shadow:0 2px 16px rgba(0,0,0,.12);
+    }
+    .topbar.scrolled{padding:10px 0;box-shadow:0 4px 24px rgba(0,0,0,.22)}
+    .nav{display:flex;justify-content:space-between;align-items:center}
+    .logo-text{font-family:var(--font-serif);font-size:26px;font-weight:300;letter-spacing:3px;color:var(--branco);text-transform:uppercase;text-decoration:none}
+    .nav-right{display:flex;align-items:center;gap:32px}
+    .menu{display:flex;gap:28px}
+    .menu a{color:rgba(255,255,255,.88);text-decoration:none;font-weight:600;font-size:12px;letter-spacing:1.5px;transition:color var(--trans);position:relative;padding-bottom:2px}
+    .menu a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--branco);transition:width var(--trans)}
+    .menu a:hover{color:var(--branco)}
+    .menu a:hover::after{width:100%}
+    .menuBtn{display:none;background:none;border:none;cursor:pointer;padding:4px}
+    .menuBtn span{display:block;width:24px;height:2px;background:var(--branco);margin:6px 0;border-radius:2px;transition:transform var(--trans),opacity var(--trans)}
+    .menuBtn.is-active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+    .menuBtn.is-active span:nth-child(2){opacity:0}
+    .menuBtn.is-active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+    /* ===== HERO ===== */
+    .hero-proposta{background:var(--escuro);padding:90px 0 80px;position:relative;overflow:hidden}
+    .hero-proposta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--vinho-dk) 0%,transparent 65%);opacity:.55}
+    .hero-proposta-inner{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap}
+    .hero-proposta-tag{font-size:11px;font-weight:700;letter-spacing:4px;color:var(--vinho-lt);text-transform:uppercase;margin-bottom:18px}
+    .hero-proposta h1{font-family:var(--font-serif);font-size:clamp(38px,6vw,72px);font-weight:300;line-height:1.08;color:var(--branco)}
+    .hero-proposta h1 em{font-style:italic;color:rgba(255,180,180,.85)}
+
+    /* ===== MAGAZINE SECTION ===== */
+    .magazine-section{
+      padding:70px 0 90px;
+      background:var(--creme);
+    }
+    .mag-header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      margin-bottom:36px;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    .mag-header-left p{
+      font-size:11px;font-weight:700;letter-spacing:4px;
+      color:var(--vinho);text-transform:uppercase;margin-bottom:8px;
+    }
+    .mag-header-left h2{
+      font-family:var(--font-serif);font-size:clamp(28px,4vw,42px);
+      font-weight:300;letter-spacing:2px;color:var(--escuro);
+    }
+    .mag-counter{
+      font-family:var(--font-serif);font-size:56px;font-weight:300;
+      color:rgba(140,31,31,.12);line-height:1;
+      display:flex;align-items:flex-end;gap:2px;
+    }
+    .mag-counter span{font-size:18px;font-weight:300;color:var(--cinza);margin-bottom:8px;font-family:var(--font-sans)}
+
+    /* ===== BOOK STAGE ===== */
+    .book-stage{
+      position:relative;
+      width:100%;
+      max-width:580px;
+      margin:0 auto;
+    }
+    .book-frame{
+      width:100%;
+      background:#111;
+      border-radius:4px;
+      overflow:hidden;
+      box-shadow:0 30px 80px rgba(0,0,0,.28), 0 0 0 1px rgba(0,0,0,.15);
+      position:relative;
+      aspect-ratio:1/1.4142;
+      perspective: 1500px;
+    }
+    .book-frame::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      box-shadow:inset 0 0 15px rgba(0,0,0,0.1);
+      z-index:51;pointer-events:none;border-radius:4px;
+    }
+
+    .page{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transition:opacity 0s;
+      pointer-events:none;
+    }
+    .page.active{opacity:1;pointer-events:auto}
+    .page img{
+      width:100%;height:100%;
+      object-fit:cover;
+      display:block;
+      user-select:none;
+      -webkit-user-drag:none;
+    }
+
+    /* Flip panel — Horizontal logic */
+    .flip-panel{
+      position:absolute;
+      top:0; bottom:0;
+      width:50%;
+      transform-style:preserve-3d;
+      transition:transform 0.8s cubic-bezier(0.4,0,0.2,1);
+      z-index:100;
+      pointer-events:none;
+      opacity:0;
+    }
+    .flip-panel.right-panel{right:0;left:auto;transform-origin:left center}
+    .flip-panel.left-panel{left:0;right:auto;transform-origin:right center}
+    .flip-panel.animating{opacity:1}
+    .flip-panel.right-panel.flip-in{transform:rotateY(-180deg)}
+    .flip-panel.left-panel.flip-in{transform:rotateY(180deg)}
+
+    .flip-face{
+      position:absolute;
+      inset:0;
+      backface-visibility:hidden;
+      overflow:hidden;
+      background:#111;
+    }
+    .flip-face.flip-back{transform:rotateY(180deg)}
+    .flip-face img{
+      width:200%;height:100%;
+      object-fit:cover;display:block;
+    }
+    .flip-face.from-right img{margin-left:-100%}
+    .flip-face.to-right img{margin-left:0}
+    .flip-face.from-left img{margin-left:0}
+    .flip-face.to-left img{margin-left:-100%}
+
+    .flip-shadow{
+      position:absolute;inset:0;
+      background:linear-gradient(to right,rgba(0,0,0,0),rgba(0,0,0,.15));
+      opacity:0;
+      transition:opacity 0.4s;
+      pointer-events:none;
+    }
+    .flip-panel.animating .flip-shadow{opacity:1}
+
+    /* Badge & page num */
+    .slide-badge{
+      position:absolute;bottom:16px;left:16px;
+      background:rgba(0,0,0,.52);backdrop-filter:blur(6px);
+      color:rgba(255,255,255,.92);
+      font-family:var(--font-sans);font-size:9px;font-weight:700;
+      letter-spacing:2px;padding:5px 13px;border-radius:50px;
+      text-transform:uppercase;pointer-events:none;z-index:10;
+    }
+    .slide-num{
+      position:absolute;bottom:16px;right:18px;
+      font-size:10px;font-weight:500;color:rgba(255,255,255,.35);
+      letter-spacing:1px;z-index:10;pointer-events:none;
+    }
+
+    /* Click zones — lateral */
+    .click-prev,.click-next{
+      position:absolute;top:0;bottom:0;width:30%;
+      z-index:60;cursor:pointer;
+    }
+    .click-prev{left:0}
+    .click-next{right:0}
+
+    /* Arrow hints — lateral */
+    .book-stage .arrow-hint{
+      position:absolute;top:50%;transform:translateY(-50%);
+      z-index:70;
+      width:44px;height:44px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(0,0,0,.35);
+      backdrop-filter:blur(4px);
+      display:flex;align-items:center;justify-content:center;
+      color:rgba(255,255,255,.8);font-size:18px;
+      opacity:0;
+      transition:opacity 0.25s;
+      pointer-events:none;
+    }
+    .book-stage .arrow-hint.left{left:14px}
+    .book-stage .arrow-hint.right{right:14px}
+    .book-stage:hover .arrow-hint.left:not(.hidden){opacity:1}
+    .book-stage:hover .arrow-hint.right:not(.hidden){opacity:1}
+
+    /* ===== CONTROLS ===== */
+    .mag-controls{
+      margin-top:28px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+    .ctrl-btn{
+      width:46px;height:46px;border-radius:50%;
+      border:1.5px solid rgba(140,31,31,.3);
+      background:var(--branco);
+      color:var(--vinho);cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:all var(--trans);font-size:18px;
+      box-shadow:0 4px 16px var(--sombra);
+    }
+    .ctrl-btn:hover:not(:disabled){background:var(--vinho);color:var(--branco);transform:translateY(-2px);box-shadow:0 8px 24px rgba(140,31,31,.25)}
+    .ctrl-btn:disabled{opacity:.3;cursor:default;box-shadow:none}
+
+    .dots-strip{display:flex;gap:5px;align-items:center;flex-wrap:wrap;justify-content:center;max-width:380px;}
+    .dot{
+      width:7px;height:7px;border-radius:50%;
+      background:var(--bege);border:1px solid rgba(140,31,31,.2);
+      cursor:pointer;transition:all .25s;
+    }
+    .dot.active{background:var(--vinho);width:22px;border-radius:4px;border-color:var(--vinho)}
+
+    .progress-wrap{width:100%;max-width:960px;margin:16px auto 0;height:2px;background:var(--bege);border-radius:1px;overflow:hidden}
+    .progress-fill{height:100%;background:var(--vinho);border-radius:1px;transition:width .4s ease}
+
+    /* ===== THUMBNAILS ===== */
+    .thumbs-section{background:var(--escuro);padding:40px 0 50px}
+    .thumbs-title{
+      font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+      color:rgba(255,255,255,.3);margin-bottom:20px;text-align:center;
+    }
+    .thumbs-strip{
+      display:flex;gap:8px;overflow-x:auto;
+      padding:4px 5% 8px;
+      scrollbar-width:thin;
+      scrollbar-color:var(--vinho) #333;
+    }
+    .thumb{
+      flex-shrink:0;width:88px;height:55px;
+      border-radius:4px;overflow:hidden;
+      border:2px solid transparent;cursor:pointer;
+      transition:all .2s;opacity:.5;
+    }
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .thumb.active{border-color:var(--vinho);opacity:1}
+
+    /* ===== FOOTER ===== */
+    .footer{background:var(--escuro);color:var(--branco);padding:70px 0 0}
+    .footerInner{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;padding-bottom:60px}
+    .footer-brand h3{font-family:var(--font-serif);font-size:36px;font-weight:300;letter-spacing:3px}
+    .cargo{color:var(--vinho-lt);font-weight:700;font-size:11px;letter-spacing:3px;margin:8px 0 6px}
+    .footer-ig{color:rgba(255,255,255,.45);font-size:14px}
+    .footer-center{max-width:280px;text-align:center}
+    .footer-quote em{font-family:var(--font-serif);font-size:20px;font-weight:300;font-style:italic;color:rgba(255,255,255,.5);line-height:1.6}
+    .socials{display:flex;gap:12px;align-items:center}
+    .social{width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.8);text-decoration:none;transition:transform var(--trans),background var(--trans)}
+    .social:hover{transform:translateY(-5px);background:var(--vinho);border-color:transparent;color:var(--branco)}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:20px 5%;text-align:center;font-size:12px;color:rgba(255,255,255,.28);letter-spacing:1px}
+
+    @media(max-width:768px){
+      .mag-counter{display:none}
+      .footerInner{flex-direction:column;align-items:center;text-align:center;gap:40px}
+      .menu{display:none;flex-direction:column;background:var(--vinho-dk);position:absolute;right:20px;top:60px;padding:20px 28px;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.3);gap:18px}
+      .menu.is-open{display:flex}
+      .menuBtn{display:block}
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
- <header class="topbar" id="topo">
+<header class="topbar" id="topo">
   <div class="container nav">
     <a class="logo-text" href="index.html">Rita Cunha</a>
-
     <button id="menuBtn" class="menuBtn" aria-label="Abrir menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-
     <div class="nav-right">
       <nav id="menu" class="menu" aria-label="Menu principal">
         <a href="https://www.instagram.com/rita.oliveiracunha/" target="_blank" rel="noopener">CONTATO</a>
       </nav>
     </div>
   </div>
- </header>
-  <!-- HERO -->
-  <section class="hero-proposta">
-    <div class="container hero-proposta-inner">
-      <div>
-        <p class="hero-proposta-tag">Consultoria de Imagem</p>
-        <h1>Proposta<br><em>Comercial</em></h1>
-      </div>
-    </div>
-  </section>
+</header>
 
-<section class="slides-section">
-  <div class="container">
-    <div class="slides-grid">
-
-      <!-- SLIDES -->
-
-      <article class="slide-card" id="slide-1">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-01.jpg" alt="">
-          <span class="slide-badge">01 · Capa</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-2">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-02.jpg" alt="">
-          <span class="slide-badge">02 · Catálogo</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-3">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-03.jpg" alt="">
-          <span class="slide-badge">03 · Catálogo</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-4">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-04.jpg" alt="">
-          <span class="slide-badge">04 · Catálogo</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-5">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-05.jpg" alt="">
-          <span class="slide-badge">05 · Consultoria</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-6">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-06.jpg" alt="">
-          <span class="slide-badge">06 · Serviço</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-7">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-07.jpg" alt="">
-          <span class="slide-badge">07 · Diagnóstico</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-8">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-08.jpg" alt="">
-          <span class="slide-badge">08 · Guarda Roupa</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-9">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-09.jpg" alt="">
-          <span class="slide-badge">09 · Mala</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-10">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-10.jpg" alt="">
-          <span class="slide-badge">10 · Compras</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-11">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-11.jpg" alt="">
-          <span class="slide-badge">11 · Looks</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-12">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-12.jpg" alt="">
-          <span class="slide-badge">12 · Coloração</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-13">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-13.jpg" alt="">
-          <span class="slide-badge">13 · Cuidados</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-14">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-14.jpg" alt="">
-          <span class="slide-badge">14 · Apoio</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-15">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-15.jpg" alt="">
-          <span class="slide-badge">15 · Benefícios</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-16">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-16.jpg" alt="">
-          <span class="slide-badge">16 · Benefícios</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-17">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-17.jpg" alt="">
-          <span class="slide-badge">17 · Investimento</span>
-        </div>
-      </article>
-
-      <article class="slide-card" id="slide-18">
-        <div class="slide-img-wrap">
-          <img src="assets/slide-18.jpg" alt="">
-          <span class="slide-badge">18 · Pagamento</span>
-        </div>
-      </article>
-
+<section class="hero-proposta">
+  <div class="container hero-proposta-inner">
+    <div>
+      <p class="hero-proposta-tag">Consultoria de Imagem</p>
+      <h1>Proposta<br><em>Empresarial</em></h1>
     </div>
   </div>
 </section>
 
+<section class="magazine-section" id="proposta">
+  <div class="container">
+    <div class="mag-header">
+      <div class="mag-header-left">
+        <h2>Proposta Empresarial</h2>
+      </div>
+      <div class="mag-counter">
+        <strong id="magCur">01</strong>
+        <span>/ 18</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="max-width:620px">
+    <div class="book-stage" id="bookStage">
+      <div class="book-frame" id="bookFrame">
+        <div class="page active" id="page-0"><img src="/assets/slide-1.jpg" alt="Slide 01"></div>
+        <div class="page" id="page-1"><img src="/assets/slide-02.jpg" alt="Slide 02"></div>
+        <div class="page" id="page-2"><img src="/assets/slide-03.jpg" alt="Slide 03"></div>
+        <div class="page" id="page-3"><img src="/assets/slide-04.jpg" alt="Slide 04"></div>
+        <div class="page" id="page-4"><img src="/assets/slide-05.jpg" alt="Slide 05"></div>
+        <div class="page" id="page-5"><img src="/assets/slide-06.jpg" alt="Slide 06"></div>
+        <div class="page" id="page-6"><img src="/assets/slide-07.jpg" alt="Slide 07"></div>
+        <div class="page" id="page-7"><img src="/assets/slide-08.jpg" alt="Slide 08"></div>
+        <div class="page" id="page-8"><img src="/assets/slide-09.jpg" alt="Slide 09"></div>
+        <div class="page" id="page-9"><img src="/assets/slide-10.jpg" alt="Slide 10"></div>
+        <div class="page" id="page-10"><img src="/assets/slide-11.jpg" alt="Slide 11"></div>
+        <div class="page" id="page-11"><img src="/assets/slide-12.jpg" alt="Slide 12"></div>
+        <div class="page" id="page-12"><img src="/assets/slide-13.jpg" alt="Slide 13"></div>
+        <div class="page" id="page-13"><img src="/assets/slide-14.jpg" alt="Slide 14"></div>
+        <div class="page" id="page-14"><img src="/assets/slide-15.jpg" alt="Slide 15"></div>
+        <div class="page" id="page-15"><img src="/assets/slide-16.jpg" alt="Slide 16"></div>
+        <div class="page" id="page-16"><img src="/assets/slide-17.jpg" alt="Slide 17"></div>
+        <div class="page" id="page-17"><img src="/assets/slide-18.jpg" alt="Slide 18"></div>
+
+        <div class="flip-panel" id="flipPanel">
+          <div class="flip-face flip-front" id="flipFront">
+            <img id="flipFrontImg" src="" alt="" draggable="false">
+          </div>
+          <div class="flip-face flip-back" id="flipBack">
+            <img id="flipBackImg" src="" alt="" draggable="false">
+          </div>
+          <div class="flip-shadow"></div>
+        </div>
+
+        <span class="slide-badge" id="stageBadge">01 · Capa</span>
+        <span class="slide-num" id="stageNum">01 / 18</span>
+
+        <div class="click-prev" id="clickPrev"></div>
+        <div class="click-next" id="clickNext"></div>
+      </div>
+
+      <div class="arrow-hint left hidden" id="arrowLeft">&#8592;</div>
+      <div class="arrow-hint right" id="arrowRight">&#8594;</div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+
+    <div class="mag-controls">
+      <button class="ctrl-btn" id="prevBtn" disabled aria-label="Slide anterior">&#8592;</button>
+      <div class="dots-strip" id="dotsStrip"></div>
+      <button class="ctrl-btn" id="nextBtn" aria-label="Próximo slide">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<section class="thumbs-section">
+  <div class="thumbs-title">Todos os slides</div>
+  <div class="thumbs-strip" id="thumbsStrip"></div>
+</section>
+
 <footer id="contato" class="footer">
-    <div class="container footerInner">
-      <div class="footer-brand">
-        <h3>Rita Cunha</h3>
-        <p class="cargo">CONSULTORA DE IMAGEM</p>
-        <p class="footer-ig">@rita.oliveiracunha</p>
-      </div>
-
-      <div class="footer-center">
-        <p class="footer-quote">
-          <em>"Imagem é identidade,<br>posicionamento e segurança."</em>
-        </p>
-      </div>
-
-      <div class="socials">
-        <a class="social" href="https://www.instagram.com/rita.oliveiracunha/" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a class="social" href="#" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.5M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
-        </a>
-      </div>
+  <div class="container footerInner">
+    <div class="footer-brand">
+      <h3>Rita Cunha</h3>
+      <p class="cargo">CONSULTORA DE IMAGEM</p>
+      <p class="footer-ig">@rita.oliveiracunha</p>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Rita Cunha · Consultoria de Imagem</p>
+    <div class="footer-center">
+      <p class="footer-quote"><em>"Imagem é identidade,<br>posicionamento e segurança."</em></p>
     </div>
-  </footer>
+    <div class="socials">
+      <a class="social" href="https://www.instagram.com/rita.oliveiracunha/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Rita Cunha · Consultoria de Imagem</p></div>
+</footer>
 
+<script>
+const slides=[
+  {src:'/assets/slide-1.jpg',badge:'01 · Capa'},
+  {src:'/assets/slide-2.jpg',badge:'02 · Catálogo'},
+  {src:'/assets/slide-3.jpg',badge:'03 · Catálogo'},
+  {src:'/assets/slide-4.jpg',badge:'04 · Catálogo'},
+  {src:'/assets/slide-5.jpg',badge:'05 · Consultoria'},
+  {src:'/assets/slide-6.jpg',badge:'06 · Serviço'},
+  {src:'/assets/slide-7.jpg',badge:'07 · Diagnóstico'},
+  {src:'/assets/slide-8.jpg',badge:'08 · Guarda Roupa'},
+  {src:'/assets/slide-9.jpg',badge:'09 · Mala'},
+  {src:'/assets/slide-10.jpg',badge:'10 · Compras'},
+  {src:'/assets/slide-11.jpg',badge:'11 · Looks'},
+  {src:'/assets/slide-12.jpg',badge:'12 · Coloração'},
+  {src:'/assets/slide-13.jpg',badge:'13 · Cuidados'},
+  {src:'/assets/slide-14.jpg',badge:'14 · Apoio'},
+  {src:'/assets/slide-15.jpg',badge:'15 · Benefícios'},
+  {src:'/assets/slide-16.jpg',badge:'16 · Benefícios'},
+  {src:'/assets/slide-17.jpg',badge:'17 · Investimento'},
+  {src:'/assets/slide-18.jpg',badge:'18 · Pagamento'},
+];
+
+let current=0;
+let animating=false;
+
+const flipPanel=document.getElementById('flipPanel'), flipFront=document.getElementById('flipFront'), flipBack=document.getElementById('flipBack'), flipFrontImg=document.getElementById('flipFrontImg'), flipBackImg=document.getElementById('flipBackImg'), stageBadge=document.getElementById('stageBadge'), stageNum=document.getElementById('stageNum'), prevBtn=document.getElementById('prevBtn'), nextBtn=document.getElementById('nextBtn'), dotsStrip=document.getElementById('dotsStrip'), thumbsStrip=document.getElementById('thumbsStrip'), progressFill=document.getElementById('progressFill'), magCur=document.getElementById('magCur'), arrowLeft=document.getElementById('arrowLeft'), arrowRight=document.getElementById('arrowRight');
+
+slides.forEach((_,i)=>{
+  const d=document.createElement('button'); d.className='dot'+(i===0?' active':''); d.addEventListener('click',()=>goTo(i)); dotsStrip.appendChild(d);
+});
+
+slides.forEach((s,i)=>{
+  const t=document.createElement('div'); t.className='thumb'+(i===0?' active':''); t.innerHTML=`<img src="${s.src}" loading="lazy">`; t.addEventListener('click',()=>goTo(i)); thumbsStrip.appendChild(t);
+});
+
+function updateUI(){
+  const n=current+1; stageBadge.textContent=slides[current].badge; stageNum.textContent=String(n).padStart(2,'0')+' / '+slides.length;
+  magCur.textContent=String(n).padStart(2,'0'); prevBtn.disabled=current===0; nextBtn.disabled=current===slides.length-1;
+  progressFill.style.width=(current/(slides.length-1)*100)+'%';
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===current));
+  document.querySelectorAll('.thumb').forEach((t,i)=>t.classList.toggle('active',i===current));
+  arrowLeft.classList.toggle('hidden',current===0); arrowRight.classList.toggle('hidden',current===slides.length-1);
+}
+
+function showPage(idx){ document.querySelectorAll('.page').forEach((p,i)=>p.classList.toggle('active',i===idx)); }
+
+function goTo(idx){
+  if(animating||idx===current||idx<0||idx>=slides.length) return;
+  animating=true;
+  const next=idx>current;
+  flipPanel.className='flip-panel '+(next?'right-panel':'left-panel');
+  flipFrontImg.src=slides[current].src;
+  if(next){ flipFrontImg.style.marginLeft='-100%'; flipFront.className='flip-face flip-front from-right'; }
+  else{ flipFrontImg.style.marginLeft='0'; flipFront.className='flip-face flip-front from-left'; }
+  flipBackImg.src=slides[idx].src;
+  if(next){ flipBackImg.style.marginLeft='0'; flipBack.className='flip-face flip-back to-right'; }
+  else{ flipBackImg.style.marginLeft='-100%'; flipBack.className='flip-face flip-back to-left'; }
+  flipPanel.classList.add('animating');
+  requestAnimationFrame(()=>{ requestAnimationFrame(()=>{ flipPanel.classList.add('flip-in'); }); });
+  setTimeout(()=>{
+    current=idx; showPage(current); flipPanel.className='flip-panel'; animating=false; updateUI();
+  },820);
+}
+
+prevBtn.addEventListener('click',()=>goTo(current-1));
+nextBtn.addEventListener('click',()=>goTo(current+1));
+document.getElementById('clickPrev').addEventListener('click',()=>goTo(current-1));
+document.getElementById('clickNext').addEventListener('click',()=>goTo(current+1));
+
+let tx=0;
+document.getElementById('bookFrame').addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+document.getElementById('bookFrame').addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>40){dx<0?goTo(current+1):goTo(current-1)}
+},{passive:true});
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight') goTo(current+1); else if(e.key==='ArrowLeft') goTo(current-1);
+});
+
+window.addEventListener('scroll',()=>document.getElementById('topo').classList.toggle('scrolled',window.scrollY>40),{passive:true});
+document.getElementById('menuBtn').addEventListener('click',function(){
+  this.classList.toggle('is-active'); document.getElementById('menu').classList.toggle('is-open');
+});
+updateUI();
+</script>
 </body>
 </html>
