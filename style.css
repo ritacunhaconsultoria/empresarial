@@ -1,0 +1,102 @@
+/* ... Manter seus estilos de RESET, Fontes e Topbar ... */
+
+.magazine-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 40px 0;
+    perspective: 1500px; /* Intensidade do efeito 3D */
+}
+
+.magazine-container {
+    position: relative;
+    width: 450px; /* Largura de uma página */
+    height: 600px;
+    transition: transform 0.5s;
+}
+
+.book {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+}
+
+.paper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    perspective: 1500px;
+    transform-origin: left center;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+    backface-visibility: hidden; /* Esconde o verso quando vira */
+    box-shadow: inset 300px 0 50px rgba(0,0,0,0.02), 0 10px 20px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back {
+    transform: rotateY(180deg); /* O verso começa espelhado */
+    z-index: 0;
+}
+
+.content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Estado quando a folha é virada */
+.paper.flipped {
+    transform: rotateY(-180deg);
+}
+
+/* Controles */
+.magazine-controls {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.magazine-controls button {
+    padding: 10px 25px;
+    border: none;
+    background: var(--vinho);
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.magazine-controls button:hover {
+    background: var(--escuro);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .magazine-container {
+        width: 300px;
+        height: 400px;
+    }
+}
