@@ -444,8 +444,16 @@ function updateUI() {
   progressFill.style.width = (current / (SLIDES.length - 1) * 100) + '%';
   document.querySelectorAll('.dot').forEach((d,i)  => d.classList.toggle('active', i === current));
   document.querySelectorAll('.thumb').forEach((t,i) => t.classList.toggle('active', i === current));
+  /* Scroll horizontal apenas dentro do strip de thumbnails */
   const th = thumbsStrip.children[current];
-  if (th) th.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  if (th) {
+    const stripLeft = thumbsStrip.scrollLeft;
+    const stripWidth = thumbsStrip.offsetWidth;
+    const thLeft = th.offsetLeft;
+    const thWidth = th.offsetWidth;
+    const target = thLeft - (stripWidth / 2) + (thWidth / 2);
+    thumbsStrip.scrollTo({left: target, behavior: 'smooth'});
+  }
 }
 
 function goTo(idx) {
