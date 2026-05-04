@@ -127,25 +127,25 @@
     }
 
     /*
-      .slide-track: container de todos os slides lado a lado
+      .Slidetrack: container de todos os slides lado a lado
       Cada slide tem width:100% do viewport
       A transição é feita com translateX
     */
-    .slide-track{
+    .Slidetrack{
       display:flex;
       height:100%;
       /* transition controlada via JS */
       will-change:transform;
     }
 
-    .slide-item{
+    .Slideitem{
       flex:0 0 100%;
       height:100%;
       position:relative;
       overflow:hidden;
     }
 
-    .slide-item img{
+    .Slideitem img{
       width:100%;height:100%;
       object-fit:cover;display:block;
       user-select:none;-webkit-user-drag:none;pointer-events:none;
@@ -155,19 +155,19 @@
       Overlay de sombra direcional que aparece durante a transição
       Simula a curvatura da página sendo virada
     */
-    .slide-item .page-shadow{
+    .Slideitem .page-shadow{
       position:absolute;inset:0;
       pointer-events:none;
       opacity:0;
       transition:opacity .1s;
       background:linear-gradient(to right,rgba(0,0,0,.22),transparent 40%,transparent 60%,rgba(0,0,0,.12));
     }
-    .slide-track.sliding .slide-item .page-shadow{
+    .Slidetrack.sliding .Slideitem .page-shadow{
       opacity:1;
     }
 
     /* Badge e número */
-    .slide-badge{
+    .Slidebadge{
       position:absolute;bottom:14px;left:14px;
       background:rgba(0,0,0,.52);backdrop-filter:blur(6px);
       color:rgba(255,255,255,.92);
@@ -175,7 +175,7 @@
       padding:5px 12px;border-radius:50px;text-transform:uppercase;
       pointer-events:none;z-index:100;
     }
-    .slide-num{
+    .Slidenum{
       position:absolute;bottom:14px;right:14px;
       font-size:10px;font-weight:500;color:rgba(255,255,255,.30);
       letter-spacing:1px;z-index:100;pointer-events:none;
@@ -280,7 +280,7 @@
       </div>
       <div class="mag-counter">
         <strong id="magCur">01</strong>
-        <span>&nbsp;/ 18</span>
+        <span>&nbsp;/ 21</span>
       </div>
     </div>
 
@@ -291,30 +291,33 @@
         <div class="book-viewport" id="bookViewport">
 
           <!-- Slide track — todos os slides em linha -->
-          <div class="slide-track" id="slideTrack">
-            <div class="slide-item"><img src="/empresarial/assets/slide-1.jpg"  alt="Slide 01" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-2.jpg"  alt="Slide 02" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-3.jpg"  alt="Slide 03" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-4.jpg"  alt="Slide 04" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-5.jpg"  alt="Slide 05" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-6.jpg"  alt="Slide 06" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-7.jpg"  alt="Slide 07" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-8.jpg"  alt="Slide 08" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-9.jpg"  alt="Slide 09" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-10.jpg" alt="Slide 10" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-11.jpg" alt="Slide 11" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-12.jpg" alt="Slide 12" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-13.jpg" alt="Slide 13" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-14.jpg" alt="Slide 14" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-15.jpg" alt="Slide 15" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-16.jpg" alt="Slide 16" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-17.jpg" alt="Slide 17" draggable="false"><div class="page-shadow"></div></div>
-            <div class="slide-item"><img src="/empresarial/assets/slide-18.jpg" alt="Slide 18" draggable="false"><div class="page-shadow"></div></div>
+          <div class="Slidetrack" id="slideTrack">
+            <div class="Slideitem"><img src="/empresarial/assets/Slide1.JPG"  alt="Slide 01" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide2.JPG"  alt="Slide 02" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide3.JPG"  alt="Slide 03" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide4.JPG"  alt="Slide 04" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide5.JPG"  alt="Slide 05" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide6.JPG"  alt="Slide 06" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide7.JPG"  alt="Slide 07" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide8.JPG"  alt="Slide 08" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide9.JPG"  alt="Slide 09" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide10.JPG" alt="Slide 10" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide11.JPG" alt="Slide 11" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide12.JPG" alt="Slide 12" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide13.JPG" alt="Slide 13" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide14.JPG" alt="Slide 14" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide15.JPG" alt="Slide 15" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide16.JPG" alt="Slide 16" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide17.JPG" alt="Slide 17" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide18.JPG" alt="Slide 18" draggable="false"><div class="page-shadow"></div></div>
+	    <div class="Slideitem"><img src="/empresarial/assets/Slide19.JPG" alt="Slide 19" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide20.JPG" alt="Slide 20" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="/empresarial/assets/Slide21.JPG" alt="Slide 21" draggable="false"><div class="page-shadow"></div></div>
           </div>
 
           <!-- Overlays fixos (ficam sobre o track, não deslizam) -->
-          <span class="slide-badge" id="stageBadge">01 · Capa</span>
-          <span class="slide-num"   id="stageNum">01 / 18</span>
+          <span class="Slidebadge" id="stageBadge">01 · Capa</span>
+          <span class="Slidenum"   id="stageNum">01 / 18</span>
         </div>
       </div>
 
@@ -356,24 +359,28 @@
 
 <script>
 const SLIDES = [
-  {src:'/empresarial/assets/slide-1.jpg',  badge:'01 · Capa'},
-  {src:'/empresarial/assets/slide-2.jpg',  badge:'02 · Catálogo'},
-  {src:'/empresarial/assets/slide-3.jpg',  badge:'03 · Catálogo'},
-  {src:'/empresarial/assets/slide-4.jpg',  badge:'04 · Consultoria'},
-  {src:'/empresarial/assets/slide-5.jpg',  badge:'05 · Provadores'},
-  {src:'/empresarial/assets/slide-6.jpg',  badge:'06 · Provadores'},
-  {src:'/empresarial/assets/slide-7.jpg',  badge:'07 · Provadores'},
-  {src:'/empresarial/assets/slide-8.jpg',  badge:'08 · Fotos'},
-  {src:'/empresarial/assets/slide-9.jpg',  badge:'09 · Vídeo'},
-  {src:'/empresarial/assets/slide-10.jpg', badge:'10 · Vídeo'},
-  {src:'/empresarial/assets/slide-11.jpg', badge:'11 · Treinamento'},
-  {src:'/empresarial/assets/slide-12.jpg', badge:'12 · Treinamento'},
-  {src:'/empresarial/assets/slide-13.jpg', badge:'13 · Treinamento'},
-  {src:'/empresarial/assets/slide-14.jpg', badge:'14 · Palestras'},
-  {src:'/empresarial/assets/slide-15.jpg', badge:'15 · Benefícios'},
-  {src:'/empresarial/assets/slide-16.jpg', badge:'16 · Benefícios'},
-  {src:'/empresarial/assets/slide-17.jpg', badge:'17 · Investimento'},
-  {src:'/empresarial/assets/slide-18.jpg', badge:'18 · Pagamento'},
+  {src:'/empresarial/assets/Slide1.JPG',  badge:'01 · Capa'},
+  {src:'/empresarial/assets/Slide2.JPG',  badge:'02 · Consultoria'},
+  {src:'/empresarial/assets/Slide3.JPG',  badge:'03 · Consultoria'},
+  {src:'/empresarial/assets/Slide4.JPG',  badge:'04 · Catálogo'},
+  {src:'/empresarial/assets/Slide5.JPG',  badge:'05 · Catálogo'},
+  {src:'/empresarial/assets/Slide6.JPG',  badge:'06 · Consultoria'},
+  {src:'/empresarial/assets/Slide7.JPG',  badge:'07 · Provadores'},
+  {src:'/empresarial/assets/Slide8.JPG',  badge:'08 · Provadores'},
+  {src:'/empresarial/assets/Slide9.JPG',  badge:'09 · Provadores'},
+  {src:'/empresarial/assets/Slide10.JPG', badge:'10 · Foto'},
+  {src:'/empresarial/assets/Slide11.JPG', badge:'11 · Vídeo'},
+  {src:'/empresarial/assets/Slide12.JPG', badge:'12 · Vídeo'},
+  {src:'/empresarial/assets/Slide13.JPG', badge:'13 · Treinamento'},
+  {src:'/empresarial/assets/Slide14.JPG', badge:'14 · Treinamento'},
+  {src:'/empresarial/assets/Slide15.JPG', badge:'15 · Treinamento'},
+  {src:'/empresarial/assets/Slide16.JPG', badge:'16 · Palestras'},
+  {src:'/empresarial/assets/Slide17.JPG', badge:'17 · Benefícios'},
+  {src:'/empresarial/assets/Slide18.JPG', badge:'18 · Consultoria'},
+  {src:'/empresarial/assets/Slide19.JPG', badge:'19 · Investimento'},
+  {src:'/empresarial/assets/Slide20.JPG', badge:'20 · Pagamento'},
+  {src:'/empresarial/assets/Slide21.JPG', badge:'21 · Contra-Capa'},
+
 ];
 
 /* ─── Configuração da animação ───────────────────────────────
