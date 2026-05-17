@@ -19,7 +19,7 @@
     }
     html{scroll-behavior:smooth}
     body{font-family:var(--font-sans);color:var(--escuro);background:var(--creme);line-height:1.65}
-    .container{width:90%;max-width:1100px;margin:auto}
+    .container{width:95%;max-width:1400px;margin:auto}
 
     /* TOPBAR */
     .topbar{background:var(--vinho);padding:16px 0;color:var(--branco);position:sticky;top:0;z-index:1000;transition:padding var(--trans),box-shadow var(--trans);box-shadow:0 2px 16px rgba(0,0,0,.12)}
@@ -39,10 +39,22 @@
 
     /* HERO */
     .hero-proposta{background:var(--escuro);padding:90px 0 80px;position:relative;overflow:hidden}
-    .hero-proposta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--vinho-dk) 0%,transparent 65%);opacity:.55}
+    /* GIF de vídeo como fundo — substitui o degradê vermelho/preto */
+    .hero-proposta .hero-video-bg{
+      position:absolute;inset:0;
+      width:100%;height:100%;
+      object-fit:cover;
+      object-position:center center;
+      z-index:0;
+      pointer-events:none;
+    }
+    /* Overlay escuro leve para garantir legibilidade do texto sobre o GIF */
+    .hero-proposta::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.38);z-index:1}
     .hero-proposta-inner{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap}
     .hero-proposta-tag{font-size:11px;font-weight:700;letter-spacing:4px;color:var(--vinho-lt);text-transform:uppercase;margin-bottom:18px}
     .hero-proposta h1{font-family:var(--font-serif);font-size:clamp(38px,6vw,72px);font-weight:300;line-height:1.08;color:var(--branco)}
+    /* "Proposta" agora tem a mesma cor de "Empresarial" */
+    .hero-proposta h1 .txt-proposta{font-style:normal;color:rgba(#ffffff)}
     .hero-proposta h1 em{font-style:italic;color:rgba(255,180,180,.85)}
 
     /* MAGAZINE SECTION */
@@ -84,13 +96,13 @@
     /* O "livro" — proporção A4 retrato */
     .book-wrap{
       flex:1;
-      max-width:900px;
+      max-width:1200px;
       position:relative;
     }
 
     /*
       .book-viewport: janela recortada, overflow:hidden
-      Dentro dela ficam os slides num track que desliza
+      Dentro dela ficam os Slides num track que desliza
     */
     .book-viewport{
       width:100%;
@@ -106,7 +118,7 @@
         6px 0 16px rgba(0,0,0,.14),
         -3px 0 8px rgba(0,0,0,.07);
       background:#111;
-      /* Perspectiva para efeito 3D nos slides */
+      /* Perspectiva para efeito 3D nos Slides */
       perspective:900px;
     }
 
@@ -127,8 +139,8 @@
     }
 
     /*
-      .Slidetrack: container de todos os slides lado a lado
-      Cada slide tem width:100% do viewport
+      .Slidetrack: container de todos os Slides lado a lado
+      Cada Slide tem width:100% do viewport
       A transição é feita com translateX
     */
     .Slidetrack{
@@ -264,10 +276,12 @@
 </header>
 
 <section class="hero-proposta">
+  <!-- GIF de vídeo como fundo — coloque seu arquivo em assets/hero-bg.gif (960x540 recomendado) -->
+  <img class="hero-video-bg" src="assets/hero-bg.gif" alt="" aria-hidden="true">
   <div class="container hero-proposta-inner">
     <div>
       <p class="hero-proposta-tag">Consultoria de Imagem</p>
-      <h1>Proposta<br><em>Empresarial</em></h1>
+      <h1><span class="txt-proposta">Proposta</span><br><em>Empresarial</em></h1>
     </div>
   </div>
 </section>
@@ -280,7 +294,7 @@
       </div>
       <div class="mag-counter">
         <strong id="magCur">01</strong>
-        <span>&nbsp;/ 21</span>
+        <span>&nbsp;/ 20</span>
       </div>
     </div>
 
@@ -290,38 +304,37 @@
       <div class="book-wrap">
         <div class="book-viewport" id="bookViewport">
 
-          <!-- Slide track — todos os slides em linha -->
-          <div class="Slidetrack" id="slideTrack">
-            <div class="Slideitem"><img src="/empresarial/assets/Slide1.JPG"  alt="Slide 01" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide2.JPG"  alt="Slide 02" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide3.JPG"  alt="Slide 03" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide4.JPG"  alt="Slide 04" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide5.JPG"  alt="Slide 05" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide6.JPG"  alt="Slide 06" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide7.JPG"  alt="Slide 07" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide8.JPG"  alt="Slide 08" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide9.JPG"  alt="Slide 09" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide10.JPG" alt="Slide 10" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide11.JPG" alt="Slide 11" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide12.JPG" alt="Slide 12" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide13.JPG" alt="Slide 13" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide14.JPG" alt="Slide 14" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide15.JPG" alt="Slide 15" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide16.JPG" alt="Slide 16" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide17.JPG" alt="Slide 17" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide18.JPG" alt="Slide 18" draggable="false"><div class="page-shadow"></div></div>
-	    <div class="Slideitem"><img src="/empresarial/assets/Slide19.JPG" alt="Slide 19" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide20.JPG" alt="Slide 20" draggable="false"><div class="page-shadow"></div></div>
-            <div class="Slideitem"><img src="/empresarial/assets/Slide21.JPG" alt="Slide 21" draggable="false"><div class="page-shadow"></div></div>
+          <!-- Slide track — todos os Slides em linha -->
+          <div class="Slidetrack" id="SlideTrack">
+            <div class="Slideitem"><img src="assets/Slide1.jpg"  alt="Slide 01" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide2.jpg"  alt="Slide 02" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide3.jpg"  alt="Slide 03" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide4.jpg"  alt="Slide 04" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide5.jpg"  alt="Slide 05" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide6.jpg"  alt="Slide 06" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide7.jpg"  alt="Slide 07" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide8.jpg"  alt="Slide 08" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide9.jpg"  alt="Slide 09" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide10.jpg" alt="Slide 10" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide11.jpg" alt="Slide 11" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide12.jpg" alt="Slide 12" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide13.jpg" alt="Slide 13" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide14.jpg" alt="Slide 14" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide15.jpg" alt="Slide 15" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide16.jpg" alt="Slide 16" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide17.jpg" alt="Slide 17" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide18.jpg" alt="Slide 18" draggable="false"><div class="page-shadow"></div></div>
+	    <div class="Slideitem"><img src="assets/Slide19.jpg" alt="Slide 19" draggable="false"><div class="page-shadow"></div></div>
+            <div class="Slideitem"><img src="assets/Slide20.jpg" alt="Slide 20" draggable="false"><div class="page-shadow"></div></div>
           </div>
 
           <!-- Overlays fixos (ficam sobre o track, não deslizam) -->
           <span class="Slidebadge" id="stageBadge">01 · Capa</span>
-          <span class="Slidenum"   id="stageNum">01 / 18</span>
+          <span class="Slidenum"   id="stageNum">01 / 20</span>
         </div>
       </div>
 
-      <button class="side-btn" id="nextBtn" aria-label="Próximo slide">&#8594;</button>
+      <button class="side-btn" id="nextBtn" aria-label="Próximo Slide">&#8594;</button>
     </div>
 
     <div class="progress-wrap">
@@ -334,7 +347,7 @@
 </section>
 
 <section class="thumbs-section">
-  <div class="thumbs-title">Todos os slides</div>
+  <div class="thumbs-title">Todos os Slides</div>
   <div class="thumbs-strip" id="thumbsStrip"></div>
 </section>
 
@@ -358,34 +371,32 @@
 </footer>
 
 <script>
-const SLIDES = [
-  {src:'/empresarial/assets/Slide1.JPG',  badge:'01 · Capa'},
-  {src:'/empresarial/assets/Slide2.JPG',  badge:'02 · Consultoria'},
-  {src:'/empresarial/assets/Slide3.JPG',  badge:'03 · Consultoria'},
-  {src:'/empresarial/assets/Slide4.JPG',  badge:'04 · Catálogo'},
-  {src:'/empresarial/assets/Slide5.JPG',  badge:'05 · Catálogo'},
-  {src:'/empresarial/assets/Slide6.JPG',  badge:'06 · Consultoria'},
-  {src:'/empresarial/assets/Slide7.JPG',  badge:'07 · Provadores'},
-  {src:'/empresarial/assets/Slide8.JPG',  badge:'08 · Provadores'},
-  {src:'/empresarial/assets/Slide9.JPG',  badge:'09 · Provadores'},
-  {src:'/empresarial/assets/Slide10.JPG', badge:'10 · Foto'},
-  {src:'/empresarial/assets/Slide11.JPG', badge:'11 · Vídeo'},
-  {src:'/empresarial/assets/Slide12.JPG', badge:'12 · Vídeo'},
-  {src:'/empresarial/assets/Slide13.JPG', badge:'13 · Treinamento'},
-  {src:'/empresarial/assets/Slide14.JPG', badge:'14 · Treinamento'},
-  {src:'/empresarial/assets/Slide15.JPG', badge:'15 · Treinamento'},
-  {src:'/empresarial/assets/Slide16.JPG', badge:'16 · Palestras'},
-  {src:'/empresarial/assets/Slide17.JPG', badge:'17 · Benefícios'},
-  {src:'/empresarial/assets/Slide18.JPG', badge:'18 · Consultoria'},
-  {src:'/empresarial/assets/Slide19.JPG', badge:'19 · Investimento'},
-  {src:'/empresarial/assets/Slide20.JPG', badge:'20 · Pagamento'},
-  {src:'/empresarial/assets/Slide21.JPG', badge:'21 · Contra-Capa'},
-
+const SlideS = [
+  {src:'assets/Slide1.jpg',  badge:'01 · Capa'},
+  {src:'assets/Slide2.jpg',  badge:'02 · Contra Capa'},
+  {src:'assets/Slide3.jpg',  badge:'03 · Contra Capa'},
+  {src:'assets/Slide4.jpg',  badge:'04 · Catálogo'},
+  {src:'assets/Slide5.jpg',  badge:'05 · Catálogo'},
+  {src:'assets/Slide6.jpg',  badge:'06 · Provadores'},
+  {src:'assets/Slide7.jpg',  badge:'07 · Provadores'},
+  {src:'assets/Slide8.jpg',  badge:'08 · Provadores'},
+  {src:'assets/Slide9.jpg',  badge:'09 · Fotos'},
+  {src:'assets/Slide10.jpg', badge:'10 · Vídeo'},
+  {src:'assets/Slide11.jpg', badge:'11 · Vídeo'},
+  {src:'assets/Slide12.jpg', badge:'12 · Treinamento'},
+  {src:'assets/Slide13.jpg', badge:'13 · Treinamento'},
+  {src:'assets/Slide14.jpg', badge:'14 · Treinamento'},
+  {src:'assets/Slide15.jpg', badge:'15 · Palestras'},
+  {src:'assets/Slide16.jpg', badge:'16 · Benefícios'},
+  {src:'assets/Slide17.jpg', badge:'17 · Benefícios'},
+  {src:'assets/Slide18.jpg', badge:'18 · Investimento'},
+  {src:'assets/Slide19.jpg', badge:'19 · Pagamento'},
+  {src:'assets/Slide20.jpg', badge:'19 · Revista'},
 ];
 
 /* ─── Configuração da animação ───────────────────────────────
-   Efeito: slide horizontal com aceleração/desaceleração suave
-   + leve escala no slide que entra (parece "emergir" da página)
+   Efeito: Slide horizontal com aceleração/desaceleração suave
+   + leve escala no Slide que entra (parece "emergir" da página)
    + sombra direcional durante o movimento
 ─────────────────────────────────────────────────────────────── */
 const DURATION  = 520;  // ms — tempo de transição
@@ -398,7 +409,7 @@ let touchY0   = 0;
 let dragX     = 0;
 let isDragging= false;
 
-const track        = document.getElementById('slideTrack');
+const track        = document.getElementById('SlideTrack');
 const viewport     = document.getElementById('bookViewport');
 const stageBadge   = document.getElementById('stageBadge');
 const stageNum     = document.getElementById('stageNum');
@@ -419,11 +430,11 @@ function setPosition(idx, animate) {
   track.style.transform = `translateX(${-idx * 100}%)`;
 }
 
-/* Inicializar — posicionar no primeiro slide sem animação */
+/* Inicializar — posicionar no primeiro Slide sem animação */
 setPosition(0, false);
 
 /* Dots */
-SLIDES.forEach((_,i) => {
+SlideS.forEach((_,i) => {
   const d = document.createElement('button');
   d.className = 'dot' + (i === 0 ? ' active' : '');
   d.setAttribute('aria-label', 'Slide ' + (i+1));
@@ -432,7 +443,7 @@ SLIDES.forEach((_,i) => {
 });
 
 /* Thumbnails */
-SLIDES.forEach((s,i) => {
+SlideS.forEach((s,i) => {
   const t = document.createElement('div');
   t.className = 'thumb' + (i === 0 ? ' active' : '');
   t.innerHTML = `<img src="${s.src}" alt="${s.badge}" loading="lazy">`;
@@ -442,12 +453,12 @@ SLIDES.forEach((s,i) => {
 
 function updateUI() {
   const n = current + 1;
-  stageBadge.textContent  = SLIDES[current].badge;
-  stageNum.textContent    = String(n).padStart(2,'0') + ' / ' + SLIDES.length;
+  stageBadge.textContent  = SlideS[current].badge;
+  stageNum.textContent    = String(n).padStart(2,'0') + ' / ' + SlideS.length;
   magCur.textContent      = String(n).padStart(2,'0');
   prevBtn.disabled        = current === 0;
-  nextBtn.disabled        = current === SLIDES.length - 1;
-  progressFill.style.width = (current / (SLIDES.length - 1) * 100) + '%';
+  nextBtn.disabled        = current === SlideS.length - 1;
+  progressFill.style.width = (current / (SlideS.length - 1) * 100) + '%';
   document.querySelectorAll('.dot').forEach((d,i)  => d.classList.toggle('active', i === current));
   document.querySelectorAll('.thumb').forEach((t,i) => t.classList.toggle('active', i === current));
   /* Scroll horizontal apenas dentro do strip de thumbnails */
@@ -463,7 +474,7 @@ function updateUI() {
 }
 
 function goTo(idx) {
-  if (busy || idx === current || idx < 0 || idx >= SLIDES.length) return;
+  if (busy || idx === current || idx < 0 || idx >= SlideS.length) return;
   busy = true;
 
   track.classList.add('sliding');
@@ -482,8 +493,8 @@ prevBtn.addEventListener('click', () => goTo(current - 1));
 nextBtn.addEventListener('click', () => goTo(current + 1));
 
 /* ─── Touch / swipe com feedback visual em tempo real ────────
-   O utilizador pode ver o slide deslizando enquanto arrasta,
-   e ao soltar ele snapa para o slide correto.
+   O utilizador pode ver o Slide deslizando enquanto arrasta,
+   e ao soltar ele snapa para o Slide correto.
 ─────────────────────────────────────────────────────────────── */
 viewport.addEventListener('touchstart', e => {
   if (busy) return;
@@ -506,14 +517,14 @@ viewport.addEventListener('touchmove', e => {
 
   dragX = dx;
 
-  /* Resistência nas bordas (primeiro/último slide) */
+  /* Resistência nas bordas (primeiro/último Slide) */
   let resistance = 1;
-  if ((current === 0 && dx > 0) || (current === SLIDES.length - 1 && dx < 0)) {
+  if ((current === 0 && dx > 0) || (current === SlideS.length - 1 && dx < 0)) {
     resistance = 0.18;
   }
 
   /* Mover o track em tempo real */
-  const base   = -current * 100;            /* % do slide atual */
+  const base   = -current * 100;            /* % do Slide atual */
   const offset = (dragX * resistance / viewport.offsetWidth) * 100;
   track.style.transform = `translateX(calc(${base}% + ${dragX * resistance}px))`;
 }, {passive: true});
@@ -524,12 +535,12 @@ viewport.addEventListener('touchend', e => {
 
   const threshold = viewport.offsetWidth * 0.22; /* 22% da largura para trocar */
 
-  if (dragX < -threshold && current < SLIDES.length - 1) {
+  if (dragX < -threshold && current < SlideS.length - 1) {
     goTo(current + 1);
   } else if (dragX > threshold && current > 0) {
     goTo(current - 1);
   } else {
-    /* Snap de volta para o slide atual */
+    /* Snap de volta para o Slide atual */
     track.style.transition = `transform ${DURATION * 0.6}ms ${EASING}`;
     track.style.transform  = `translateX(${-current * 100}%)`;
     setTimeout(() => { busy = false; }, DURATION * 0.6);
